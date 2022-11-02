@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>온라인피자 주문폼</h1>
+	<form action="test/pizza" target="myi">
+		<label>고객명 : </label>
+		<input type="text" name="myname"><br>
+		<label>전화번호 : </label>
+		<input type="tel" name="mytel"><br>
+		<label>이메일 : </label>
+		<input type="email" name="myemail"><br>
+		
+		<fieldset>
+			<legend>피자사이즈</legend>
+			<input type="radio" name="size" id="size1" value="Small"><label for="size1">Small</label> <br>
+			<input type="radio" name="size" id="size2" value="Medium"><label for="size2">Medium</label> <br>
+			<input type="radio" name="size" id="size3" value="large"><label for="size3">large</label> <br>			
+		</fieldset>
+
+		<fieldset>
+			<legend>토핑선택</legend>
+			<input type="checkbox" name="topping" id="topping1" value="베이컨"><label for="topping1">베이컨</label> <br>
+			<input type="checkbox" name="topping" id="topping2" value="치즈"><label for="topping2">치즈</label> <br>
+			<input type="checkbox" name="topping" id="topping3" value="양파"><label for="topping3">양파</label> <br>
+			<input type="checkbox" name="topping" id="topping4" value="버섯"><label for="topping4">버섯</label> <br>						
+		</fieldset>
+<!-- hobby=낚시&hobby=골프 -->
+<!-- String[] arr -->		
+
+		<label>희망배송시간 : </label>
+		<input type="time" name="mytime" min="10:00:00" max="22:00:00" ><br>
+		<br>
+				
+		<br>
+		<label>배송시요청사항 : </label>
+		<textarea rows="3" cols="100" name="mytxt"></textarea>
+		
+		<br><br>
+										
+		<button>주문하기</button>		
+	</form>
+	
+
+	
+	<iframe name="myi" width="100%" height="500" frameborder="0">
+	</iframe>
+</body>
+</html>

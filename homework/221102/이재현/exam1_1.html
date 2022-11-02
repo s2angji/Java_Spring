@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>exam1.1</title>
+</head>
+<body>
+
+<form action="test/exam1_1">
+
+<label>고객명 : </label>
+	<input type="text" name="name"/>
+<label>전화번호 : </label>
+	<input type="tel" name="tel"/>
+<label>E-mail : </label>
+	<input type="email" name="email"/>
+	
+<fieldset>
+	<legend>피자 사이즈</legend>
+		<input type="radio" name="pizzasize" value="Small"><label>Small</label>
+		<input type="radio" name="pizzasize" value="Medium"><label>Medium</label>
+		<input type="radio" name="pizzasize" value="Large"><label>Large</label>
+</fieldset>
+
+<fieldset>
+	<legend>토핑선택</legend>
+	<input type="checkbox" name="topping" value="top1"><label>베이컨</label>
+	<input type="checkbox" name="topping" value="top2"><label>치즈</label>
+	<input type="checkbox" name="topping" value="top3"><label>양파</label>
+	<input type="checkbox" name="topping" value="top4"><label>버섯</label>
+</fieldset>
+
+<label>희망배송시간 : </label>
+	<input type="time" name="time"><br>
+
+<label>배송시요청사항 : </label>
+	<textarea rows="3" cols="100" name='textarea'></textarea><br>
+
+<button>주문하기</button>
+</form>
+</body>
+</html>
