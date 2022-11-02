@@ -1,0 +1,12 @@
+		0900~1750(30)
+쉬는시간	50~정각 (10~15)
+점심시간	1130~1300
+과제		1630~1730
+
+Java: jdk 1.8
+Eclipse(최신버전)
+웹서버+웹어플리케이션(apache tomcat)
+오라클, sql developer
+
+how well does your browser support html5?
+https://html5test.com/
