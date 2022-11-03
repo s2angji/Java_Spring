@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                           http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+    
+    <bean id="myData" class="test.bean.MyData">
+    	<constructor-arg value="100"></constructor-arg>
+    </bean>
+    
+    <!-- <bean id="std" class="test.bean.Student">
+    	<property name="name" value="hello"></property>
+    	<property name="age" value="20"></property>
+    </bean> -->
+    
+    <bean id="std" class="test.bean.Student">
+    	<constructor-arg value="hello"></constructor-arg>
+    	<constructor-arg value="30"></constructor-arg>
+    	<constructor-arg ref="myData"></constructor-arg>
+    </bean>
+    
+    <bean id="o" class="test.bean.Obesity">
+    </bean>
+    
+    <context:component-scan base-package="my.control" />
+
+</beans>

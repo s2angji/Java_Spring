@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-  
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,16 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>고객명:${name}</h1>
-	<h1>전화번호:${tel}</h1>
-	<h1>E-mail:${email}</h1>
-	<h1>피자 사이즈:${size}</h1>
+	<h1>이름:${myname}</h1>
+	<h1>나이:${myage}</h1>
+	<h1>생일:${mybirth}</h1>
 	<ul>
-	<c:forEach var="n" items="${topping}">
-		<li>${n}</li>
-	</c:forEach>
+		<c:forEach var="n" items="${myarr}">
+			<li>${n}</li>
+		</c:forEach>
 	</ul>
-	<h1>희망배송시간:${time}</h1>
-	<h1>배송시요청사항:${txt}</h1>
 </body>
 </html>

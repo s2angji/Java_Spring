@@ -60,4 +60,34 @@ public class HomeController {
 		model.addAttribute("result", num1+num2);
 		return "03.calcview";  
 	}
+	
+	@RequestMapping(value = "/myobsity", method = RequestMethod.GET)
+	public String myobsity( int tall, int weight, Model model) {
+		double stdWeight = (tall - 100) * 0.85; //표준체중
+		double obesity = weight / stdWeight * 100; //비만도
+		String result = "";
+		String img = "";
+		if (obesity <= 90) {
+			result = "저체중";
+			img = "../image/1.png";
+		}
+		else if (obesity > 90 && obesity <= 100) {
+			result = "정상";
+			img = "../image/2.png";
+		}
+		else if (obesity > 110 && obesity <= 120) {
+			result = "과체중";
+			img = "../image/3.png";
+		}
+		else{
+			result = "비만";
+			img = "../image/4.png";
+		}
+
+//		model.addAttribute("result", obesity);
+		model.addAttribute("result", result);
+		model.addAttribute("img", img);
+		
+		return "04.resultObsity";  
+	}
 }
