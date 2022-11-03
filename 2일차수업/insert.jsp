@@ -15,14 +15,18 @@
 	Statement stmt = null;
 	ResultSet rs = null;
     try{
-        String sql ="insert into student(name, age, birth) values('홍길동', 20, '1999-12-15')";
+        String sql ="insert into student(name,age,birth) values('홍길동',20,'1999-12-15')";
 		conn = DriverManager.getConnection(oracleURL, id, pass);
 		stmt = conn.createStatement();  
 		stmt.execute(sql);
 		conn.close();
 		out.print("추가성공");
 
-    } catch (Exception ex){
+    }catch( Exception ex){
         out.print( ex.getMessage() );
     }
 %>
+
+
+
+

@@ -12,7 +12,7 @@
         <property name="suffix" value=".jsp" />
     </bean>
     
-    <bean id="myData" class="test.bean.MyData">
+    <bean id="myData" class="test.bean.MyData" scope="singleton">
     	<constructor-arg value="100"></constructor-arg>
     </bean>
     
@@ -30,15 +30,15 @@
     <bean id="o" class="test.bean.Obesity">
     </bean>
     
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://localhost:3306/test"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="1234"></property>
-	</bean> 
-    
-<!--     <bean id="poolDAO" class="test.model.StudentPoolDAO">
-    </bean> -->
+	</bean>
+	
+	<!-- <bean id="poolDAO" class="test.model.StudentPoolDAO">
+	</bean> -->
     
     <context:component-scan base-package="my.control" />
     <context:component-scan base-package="test.model" />

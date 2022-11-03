@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="test/pizzaOrder" target="_blank">
+		<label>고객명</label>
+		<input type="text" name="myname" required><br>
+		
+		<label>나이</label>
+		<input type="number" name="myage" min="1" max="120" step="0.1" required><br>
+			
+		<label>전화번호</label>
+		<input type="tel" name="mytel" pattern="\d{2,3}-\d{4}-\d{4}" placeholder="000-0000-0000형식입력"><br>
+		
+		<label>이메일</label>
+		<input type="email" name="myemail"><br>	
+		
+		<fieldset>
+			<legend>피자사이즈</legend>
+			<input type="radio" name="color" value="Small"><label>Small</label><br>
+			<input type="radio" name="color" value="Medium"><label>Medium</label><br>
+			<input type="radio" name="color" value="large"><label>large</label><br>
+		</fieldset>
+		
+		<fieldset>
+			<legend>토핑선택</legend>
+			<input type="checkbox" name="topping" value="베이컨"><label>베이컨</label><br>
+			<input type="checkbox" name="topping" value="치즈"><label>치즈</label><br>
+			<input type="checkbox" name="topping" value="양파"><label>양파</label><br>
+			<input type="checkbox" name="topping" value="버섯"><label>버섯</label><br>
+		</fieldset>		
+		<br>		
+		<label>희망배송시간</label>
+		<input type="time" name="mytime" min="10:00" max="22:00"><br><br>	
+	
+		<br>
+		<label>배송요청사항</label>
+		<textarea rows="3" cols="100" name="mytxt"></textarea>
+		<br>
+		<br>			
+					
+		<button>주문하기</button>
+	</form>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

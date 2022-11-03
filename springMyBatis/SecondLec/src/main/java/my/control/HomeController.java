@@ -20,8 +20,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import test.bean.MyData;
 import test.bean.Obesity;
 import test.bean.Student;
+import test.model.StudentDAO;
+import test.model.StudentDTO;
+import test.model.StudentPoolDAO;
 
 import org.springframework.ui.Model;
+import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.sql.*;
 
@@ -37,6 +41,12 @@ public class HomeController {
 	
 	@Autowired
 	Obesity o;
+	
+	@Autowired
+	BasicDataSource dataSource;
+	
+	@Autowired
+	StudentPoolDAO poolDAO;
 
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -72,6 +82,68 @@ public class HomeController {
 		model.addAttribute("result", o.getResult());
 		model.addAttribute("img", o.getImg());
 		
-		return "04.resultObesity"; // forward: view home.jsp
+		return "04.resultObesity";
+	}
+	
+	@RequestMapping(value = "/insert", method = RequestMethod.GET)
+	public String insert(Model model) {
+		
+		StudentDAO stdDAO = new StudentDAO();
+		String result = stdDAO.insertData("스프링", 40, "1979-11-12");
+		model.addAttribute("result", result);
+		
+		return "insertView";
+	}
+	
+	@RequestMapping(value = "/studentInsert", method = RequestMethod.GET)
+	public String studentInsert(HttpServletRequest request, Model model) {
+		
+		String name = request.getParameter("name");
+		int age = Integer.parseInt(request.getParameter("age"));
+		String birth = request.getParameter("birth");
+		
+		StudentDAO stdDAO = new StudentDAO();
+		String result = stdDAO.insertData(name, age, birth);
+		model.addAttribute("result", result);
+		
+		return "insertView";
+	}
+	
+	@RequestMapping(value = "/select", method = RequestMethod.GET)
+	public String select(Model model) {
+		
+		StudentDAO stdDAO = new StudentDAO();
+		ArrayList<StudentDTO> arr = stdDAO.selectStudent();
+		model.addAttribute("arr", arr);
+		return "selectView";
+	}
+	
+	@RequestMapping(value = "/insertPool", method = RequestMethod.GET)
+	public String insertPool(Model model) {
+		
+//		StudentPoolDAO stdDAO = new StudentPoolDAO();
+		String result = poolDAO.insertStudent("컴퓨터", 20, "2011-01-02");
+		model.addAttribute("result", result);
+		
+//		try {
+//			// dbpool에서 사용하지 않는 connection
+//			String sql = "insert into student values(?,?,?)";
+//			Connection conn = dataSource.getConnection();
+////			Statement stmt = conn.createStatement();
+////			stmt.execute(sql);
+//			PreparedStatement pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, "디비풀");
+//			pstmt.setInt(2, 50);
+//			pstmt.setString(3, "2017-03-12");
+//			int nCnt = pstmt.executeUpdate(); // executeUpdate() insert, delete, update 반영된 갯수를 반환함
+//			conn.close(); // dbpool로 connection 반납
+//			
+//			model.addAttribute("result", "추가 성공: " + nCnt);
+//		} catch (Exception err) {
+//			System.out.println("추가 실패: " + err.getMessage());
+//		}
+//		
+////		model.addAttribute("result", result);
+		return "insertView";
 	}
 }
