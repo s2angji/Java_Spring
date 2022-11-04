@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mybatis.ProductDAO">
+	<resultMap type="ProductDTO" id="prdModel">
+		<result property="name" column="name" />
+		<result property="count" column="count" />
+		<result property="pdate" column="pdate" />
+	</resultMap>
+
+	<select id="selectProduct" resultMap="prdModel">
+		SELECT * FROM product
+	</select>
+	
+	<select id="selectProductWhere" resultMap="prdModel" parameterType="String">
+		SELECT * FROM product WHERE name = #{name}
+	</select>
+
+	<insert id="insertProduct" parameterType="com.test.mybatis.ProductDTO">
+		INSERT INTO product VALUES(#{name}, #{count}, #{pdate})
+	</insert>
+	
+</mapper>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script>
+		function recvFn()
+		{
+			mydiv.innerHTML = xhr.responseText
+		}
+		function fn() {
+			xhr = new XMLHttpRequest()
+			xhr.open( 'GET', "test.html")
+			xhr.onload = recvFn //수신시 호출되는 함수 등록
+			xhr.send() //ajax요청
+		}
+	</script>	
+</head>
+<body>
+	<h1>ajax test</h1>
+	<button onclick="fn()">확인</button>
+	<hr>
+	<div id="mydiv"></div>
+</body>
+</html>

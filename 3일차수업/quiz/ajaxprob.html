@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+		h3 {
+			color: red;
+		}
+	</style>
+	<script>
+		function recvFn() {
+			mydiv.innerHTML = xhr.responseText
+		}
+	
+/* 		function hong() {
+			xhr = new XMLHttpRequest()
+			xhr.open('GET', "hong.html")
+			xhr.onload = recvFn
+			xhr.send()
+		}
+		
+		function tai() {
+			xhr = new XMLHttpRequest()
+			xhr.open('GET', "taiwan.html")
+			xhr.onload = recvFn
+			xhr.send()
+		}
+	
+		function phi() {
+			xhr = new XMLHttpRequest()
+			xhr.open('GET', "phi.html")
+			xhr.onload = recvFn
+			xhr.send()
+		}
+ */		
+		function dongFn( str ) {
+			xhr = new XMLHttpRequest()
+			xhr.open('GET', str)
+			xhr.onload = recvFn
+			xhr.send()
+		}
+	 
+	</script>
+	
+	
+</head>
+<body>
+	<button onclick="dongFn('taiwan.html')">태국</button>
+	<button onclick="dongFn('phi.html')">필리핀</button>
+	<button onclick="dongFn('hong.html')">홍콩</button>
+	<br>
+	<div id="mydiv"></div>
+</body>
+</html>

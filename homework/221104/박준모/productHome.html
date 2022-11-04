@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>제품</title>
+</head>
+<style>
+a {
+	border: 1px solid blue;
+	background: blue;
+	color: white;
+	
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+	function recvFn() {
+		myh.innerHTML = "";
+		myb.innerHTML = "";
+		mydiv.innerHTML = xhr.responseText; 
+	}
+	
+	function fn(url){
+		xhr = new XMLHttpRequest();
+		xhr.open("GET", url);
+		xhr.onload = recvFn; // 수신시 호출되는 함수 등록
+		xhr.send(); // ajax 요청
+	}
+	
+	function result() {
+		// mydiv.innerText = xhr.responseText;
+		jArr = JSON.parse(xhr.responseText);
+		
+		myh.innerHTML = ""
+		myb.innerHTML = ""
+		mydiv.innerHTML = "";
+
+		tr = myh.insertRow();
+		td1 = tr.insertCell();
+		td2 = tr.insertCell();
+		td3 = tr.insertCell();
+		td1.innerText = "제품명";
+		td2.innerText = "수량";
+		td3.innerText = "생산일";
+		
+		for(j of jArr) {
+			tr = myb.insertRow();
+			td1 = tr.insertCell();
+			td2 = tr.insertCell();
+			td3 = tr.insertCell();
+			td1.innerText = j['product'];
+			td2.innerText = j['count'];
+			td3.innerText = j['date'];
+		}
+	}
+	
+	function search(){
+		xhr = new XMLHttpRequest();
+		xhr.open("GET", "test/selectProductAjax");
+		xhr.onload = result; // 수신시 호출되는 함수 등록
+		xhr.send(); // ajax 요청
+	}
+</script> 
+<body>
+	<div style="border: 1px solid blue; text-align: center; height: auto;">
+		<br> 
+		<button onclick="fn('productForm.html')">입력</button>
+		<!-- <button onclick="location.href='test/selectProduct';">보기</button> -->
+		<button onclick="search()">보기</button>
+		<button onclick="fn('productSearch.html')">검색</button>
+		<br><br>
+		
+		<hr style="width: 70%;">
+		
+		<div id="mydiv">
+		</div>
+		
+		<div class="container" style="text-align: center;" >
+		    <table class='table table-striped'>
+	        	<thead id="myh">
+	        	</thead>
+	       		<tbody id="myb">
+	       		</tbody>
+	   		</table>
+	   		<br>
+	   	</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script>
+		function recvFn() {
+			mydiv.innerHTML = xhr.responseText
+		}
+		
+		function dongFn(str) {
+			xhr = new XMLHttpRequest()
+			xhr.open('GET', str)
+			xhr.onload = recvFn
+			xhr.send()
+		}
+	</script>
+
+</head>
+<body>
+	<!-- <a href="product.html">학생입력</a>
+	<form action="test/select">
+		<button>학생확인</button>
+	</form>
+	
+	<form action="test/selectOrder">
+		<button>정렬된학생확인</button>
+	</form>
+	
+	<form action="test/selectWhere">
+		<button>이상혁 학생확인</button>
+	</form>
+	
+	<form action="test/selectOr">
+		<button>여러 학생확인</button>
+	</form> -->
+	
+	<button onclick="dongFn('insertProduct.jsp')">입력</button>&nbsp;&nbsp;
+	<form action="test/selectProduct">
+		<button>보기</button>&nbsp;&nbsp;
+	</form>
+	<form action="test/productSelectWhere">
+		<button>검색</button>&nbsp;&nbsp;
+	</form>
+	<br>
+	<div id="mydiv"></div>
+	
+</body>
+</html>

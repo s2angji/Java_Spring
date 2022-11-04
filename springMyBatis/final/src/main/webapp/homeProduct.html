@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<title>Insert title here</title>
+<script>
+	function select() {
+		// mydiv.innerText = xhr.responseText
+		jStr = xhr.responseText
+		console.log(jStr)
+		jArr = JSON.parse(xhr.responseText)
+		console.log(jArr)
+		
+		myh.innerHTML = ""
+		myb.innerHTML = ""
+		tr = myh.insertRow()
+		td1 = tr.insertCell()
+		td2 = tr.insertCell()
+		td1.innerText = "이름"
+		td2.innerText = "나이"
+		
+		for (j of jArr) {
+			tr = myb.insertRow()
+			td1 = tr.insertCell()
+			td2 = tr.insertCell()
+			td1.innerText = j['name']
+			td2.innerText = j['age']
+			
+			console.log(j['name'], j['age'])
+		}
+	}
+
+	function fn() {
+		xhr = new XMLHttpRequest()
+		xhr.open('GET', "test/jsoncalldb")
+		xhr.onload = recvFn //수신시 호출되는 함수 등록
+		xhr.send() //ajax요청
+	}
+</script>
+</head>
+<body>
+	<div class="container">
+		<div  style="display: flex">
+			<button class="btn btn-primary" onclick="insert()">입력</button>
+			<button class="btn btn-primary" onclick="select()">보기</button>
+			<button class="btn btn-primary" onclick="where()">검색</button>
+		</div>
+		
+		<div id="mydiv" style="display: none"></div>
+		<table class="table table-striped" style="display: none">
+			<thead>
+				<tr><th>제품명</th><th>수량</th><th>생산일</th></tr>
+			</thead>
+			<tbody id="myb">
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

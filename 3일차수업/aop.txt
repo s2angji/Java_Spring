@@ -1,0 +1,116 @@
+  
+  	 <dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjweaver</artifactId>
+		    <version>1.9.6</version>
+	</dependency>
+       	<dependency>
+		    <groupId>cglib</groupId>
+		    <artifactId>cglib</artifactId>
+		    <version>2.2</version>
+	</dependency>
+
+
+
+  <bean id="advisor1" class="io.goorm.example.AdvisorClass"></bean>
+    
+	<aop:config>
+		<aop:aspect ref='advisor1'>
+			<aop:pointcut id="point1"
+				expression="execution(* method1())" />
+	
+			<aop:before method="beforeMethod" pointcut-ref="point1" />
+			<!-- <aop:after method="afterMethod" pointcut-ref="point1"/> -->
+			<aop:around method="aroundMethod" pointcut-ref="point1" />
+			 <aop:after-returning method="afterReturningMethod" pointcut-ref="point1"/> 
+			<!--	<aop:after-throwing method="afterThrowingMethod" pointcut-ref="point1" throwing="e1"/> -->
+		</aop:aspect>
+	</aop:config>
+
+
+
+
+import org.aspectj.lang.ProceedingJoinPoint;
+
+public class AdvisorClass 
+{
+	public void beforeMethod() {
+		System.out.println("beforeMethod 호출");
+	}
+	
+	public void afterMethod() {
+		System.out.println("afterMethod 호출");
+	}
+	
+	public Object aroundMethod(ProceedingJoinPoint pjp) throws Throwable{
+		System.out.println("aroundMethod 호출1");
+		
+		// 원래의 메서드를 호출한다.
+		Object obj = pjp.proceed();
+		
+		System.out.println("aroundMethod 호출 2:"+obj);
+		
+		return obj;
+	}
+	
+	public void afterReturningMethod() {
+		System.out.println("afterReturningMethod 호출");
+	}
+	
+	public void afterThrowingMethod(Throwable e1) {
+		System.out.println("afterThrowingMethod 호출");
+		System.out.println(e1);
+	}    
+}
+
+
+
+import org.aspectj.lang.annotation.*;
+import org.springframework.stereotype.Component;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.springframework.util.StopWatch;
+
+@Aspect
+@Component
+public class MyAdvice {
+    StopWatch stopWatch = new StopWatch();
+    //@Before("execution(* my.aoptest.*.*(..))")
+   @Before("execution(* my.aoptest.Hello.test*(..))")
+   public void before()
+   {
+       System.out.println("before.... time");
+       stopWatch.start();
+   }
+   @After("execution(* my.aoptest.Hello.test*(..))")
+   public void after()
+   {
+        System.out.println("after");
+        stopWatch.stop();
+        System.out.println(stopWatch.prettyPrint());       
+   }
+    
+	// @Around("execution (* my.aoptest.*.*(..))")
+	// public Object time(ProceedingJoinPoint pjp) {
+		 
+	// 	System.out.println("around start");
+	// 	Object result = null;
+	// 	try {
+	// //...
+	// 		result=pjp.proceed(); // testA()
+	// 		System.out.println("result="+result);
+	// //...
+	// 	}catch (Throwable e) {
+	// 		e.printStackTrace();
+	// 	}
+	// 	System.out.println("around end");
+	// 	return result;
+	//  }    
+}
+
+
+
+
+
+
+
+	

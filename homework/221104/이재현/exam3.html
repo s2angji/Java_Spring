@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<script>
+function ajaxT(nation){
+	xhr = new XMLHttpRequest();
+	xhr.open("GET", nation + ".html");
+	xhr.onload = recvFn;
+	xhr.send();
+}
+
+function ajaxP(nation){
+	xhr = new XMLHttpRequest();
+	xhr.open("GET", nation);
+	xhr.onload = recvFn;
+	xhr.send();
+}
+
+
+function recvFn(){
+	myDiv.innerHTML = xhr.responseText;
+}
+
+</script>
+<body>
+	<button onclick="ajaxT('insertProductForm');">입력</button>
+	<button onclick="ajaxP('test/selectProduct');">보기</button>
+	<button onclick="ajaxT('searchProductForm');">검색</button>
+	<hr>
+	<div id="myDiv">
+	
+	</div>
+</body>
+</html>
