@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	h1 {
+		color: red;
+	}
+</style>
+<script>
+	function recvFn() {
+		mydiv.innerHTML = xhr.responseText
+	}
+
+	function fn() {
+		xhr = new XMLHttpRequest()
+		xhr.open('GET', "test.html")
+		xhr.onload = recvFn //수신시 호출되는 함수 등록
+		xhr.send() //ajax요청
+	}
+</script>
+</head>
+<body>
+	<h1>ajax test</h1>
+	<button onclick="fn()">확인</button>
+	<a href="test.html" target="myi">요청</a>
+	<hr>
+	<div id="mydiv"></div>
+	<iframe name="myi" width="100%" height="300"></iframe>
+</body>
+</html>
