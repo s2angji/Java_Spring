@@ -7,6 +7,7 @@ import org.springframework.core.SpringVersion;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.io.PrintWriter;
 import java.io.IOException;
 
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.test.mybatis.StudentDAOImpl;
+import com.test.mybatis.StudentDTO;
 
 import org.springframework.ui.Model;
 import org.springframework.util.StopWatch;
@@ -32,6 +35,9 @@ public class HomeController
 {
 	@Autowired
 	BasicDataSource dataSource;
+	
+	@Autowired
+	StudentDAOImpl daoImpl;
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) 
@@ -89,5 +95,51 @@ public class HomeController
 	    }				
 		return jarr.toJSONString();  
 	}	
+	
+	@RequestMapping(value = "/insert", method = RequestMethod.GET)
+	public String insert(Model model) 
+	{
+		int n = daoImpl.insertStudent(new StudentDTO("마이바티스", 30, "2022-11-12"));
+		model.addAttribute("result", "추가성공: " + n);
+		return "insertView"; 
+	}
+	
+	@RequestMapping(value = "/select", method = RequestMethod.GET)
+	public String select(Model model) 
+	{
+		ArrayList<StudentDTO> arr = daoImpl.selectStudent();
+		model.addAttribute("arr", arr);
+		return "selectView"; 
+	}
+	
+	@RequestMapping(value = "/selectOrder", method = RequestMethod.GET)
+	public String selectOrder(Model model) 
+	{
+		ArrayList<StudentDTO> arr = daoImpl.selectStudentOrder();
+		model.addAttribute("arr", arr);
+		return "selectView";
+	}
+	
+	@RequestMapping(value = "/selectWhere", method = RequestMethod.GET)
+	public String selectWhere(Model model) 
+	{
+		ArrayList<StudentDTO> arr = daoImpl.selectStudentWhere("홍길동");
+		model.addAttribute("arr", arr);
+		return "selectView"; 
+	}
+	
+	@RequestMapping(value = "/selectOr", method = RequestMethod.GET)
+	public String selectOr(Model model) 
+	{
+		// select * from student where name="홍길동" or age=20
+		
+		HashMap<String, Object> arg = new HashMap<String, Object>();
+		arg.put("name", "홍길동");
+		arg.put("age", 20);
+		
+		ArrayList<StudentDTO> arr = daoImpl.selectStudentOr(arg);
+		model.addAttribute("arr", arr);
+		return "selectView"; 
+	}
 	
 }
